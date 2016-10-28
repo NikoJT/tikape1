@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Ketju</title>
+        <meta charset="utf-8" />
+    </head>
+
+    <body>
+
+        <h2>Viestit ketjussa <span th:text="${ketju.name}">ketjun nimi</span></h2>
+
+        <ul>
+            <li th:each="viesti: ${viestit}">
+                <span th:text="${viesti.sisalto}"> viestin sisältö </span>
+                T: <span th:text="${viesti.nimimerkki}"> nimimerkki </span>
+                 <span th:text="${viesti.aika}"> aika </span>
+            </li>
+        </ul>    
+
+
+        <h3>Lisää uusi viesti ketjuun <span th:text="${ketju.name}">ketjun nimi</span></h3>
+
+        <form method="POST" th:action="@{~/alue/{alueId}/{ketjuId}(alueId=${alue.id},ketjuId=${ketju.id})}">
+            <p>Viestin sisältö </p><textarea name="sisalto" rows="3" cols="48" maxlength="140"></textarea>
+            <br></br>
+            <p>Nimimerkkisi </p><input type="text" maxlength="20" size="20" name="nimimerkki"/>
+            <br></br>
+            <br></br>
+            <input type="submit" value="Lisää"/>
+        </form>
+        
+        <p><a th:href="@{~/alue/{id}(id=${alue.id})}">Takaisin alueelle</a></p>
+    </body>
+</html>

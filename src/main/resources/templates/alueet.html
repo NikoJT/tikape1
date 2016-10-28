@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Alueet</title>
+        <meta charset="utf-8" />
+    </head>    
+    <body>  
+        <h2>Tikape-foorumi</h2>
+
+        <table style="float: left">
+            <tr>               
+                <th align="left">Alueet</th>                              
+            </tr>           
+            <tr th:each="alue: ${alueet}">          
+                <td>
+                    <a th:href="@{~/alue/{id}(id=${alue.id})}" th:text="${alue.name}"></a>
+                </td>                              
+            </tr>           
+        </table>
+        <table style="float: left">
+            <tr>             
+                <th align="left">Viestit alueella</th> 
+            </tr>
+            <tr th:each="maara: ${viestimaara}">
+                <td>
+                    <a th:text="${maara}"></a>
+                </td>
+            </tr>
+        </table>       
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <h3>Lisää uusi alue</h3>
+        <form method="POST" th:action="@{~/alue}">
+            <p>Alueen nimi </p><input type="text" maxlength="30" size="30" name="name"/>
+            <br></br>
+            <br></br>
+            <input type="submit" value="Lisää"/>
+        </form>
+    </body>
+</html> 
