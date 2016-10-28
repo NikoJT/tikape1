@@ -13,6 +13,7 @@ import com.tikape.keskustelupalsta.domain.Alue;
 import com.tikape.keskustelupalsta.domain.Ketju;
 import com.tikape.keskustelupalsta.domain.Viesti;
 import java.util.Objects;
+import spark.Spark;
 import static spark.Spark.get;
 import static spark.Spark.post;
 
@@ -23,10 +24,15 @@ public class Main {
         AlueDao alueDao = new AlueDao(database); 
         KetjuDao ketjuDao = new KetjuDao(database);
         ViestiDao viestiDao = new ViestiDao(database);
-        
+        Spark.staticFileLocation("public");
         get("/", (req, res) -> {
             res.redirect("/alue");
             return "";
+        });
+        
+        get("/die", (req, res) -> {
+        System.exit(0);
+        return "";
         });
         
         get("/alue", (req, res) -> {

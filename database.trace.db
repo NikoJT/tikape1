@@ -32475,3 +32475,15 @@ org.h2.message.DbException: The connection was not closed by the application and
 Caused by: org.h2.jdbc.JdbcSQLException: The connection was not closed by the application and is garbage collected [90018-192]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:345)
 	... 31 more
+2016-10-28 14:31:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALUE" already exists; SQL statement:
+CREATE TABLE Alue (
+    id integer AUTO_INCREMENT PRIMARY KEY,
+    name varchar(30)
+) [42101-191]
+2016-10-28 14:32:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "ALUE" already exists; SQL statement:
+CREATE TABLE Alue (
+    id integer AUTO_INCREMENT PRIMARY KEY,
+    name varchar(30)
+) [42101-191]
