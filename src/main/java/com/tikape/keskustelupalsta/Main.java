@@ -24,7 +24,7 @@ public class Main {
         AlueDao alueDao = new AlueDao(database); 
         KetjuDao ketjuDao = new KetjuDao(database);
         ViestiDao viestiDao = new ViestiDao(database);
-        Spark.staticFileLocation("public");
+        Spark.staticFileLocation("/public");
         get("/", (req, res) -> {
             res.redirect("/alue");
             return "";
