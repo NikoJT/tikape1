@@ -4,30 +4,32 @@
     <head>
         <title>Alueet</title>
         <meta charset="utf-8" />
-    </head>    
-    <body>  
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/custom.css" rel="stylesheet"/>
+    </head>
+    <body>
         <h2>Tikape-foorumi</h2>
 
         <table style="float: left">
-            <tr>               
-                <th align="left">Alueet</th>                              
-            </tr>           
-            <tr th:each="alue: ${alueet}">          
+            <tr>
+                <th align="left">Alueet</th>
+            </tr>
+            <tr th:each="alue: ${alueet}">
                 <td>
                     <a th:href="@{~/alue/{id}(id=${alue.id})}" th:text="${alue.name}"></a>
-                </td>                              
-            </tr>           
+                </td>
+            </tr>
         </table>
         <table style="float: left">
-            <tr>             
-                <th align="left">Viestit alueella</th> 
+            <tr>
+                <th align="left">Viestit alueella</th>
             </tr>
             <tr th:each="maara: ${viestimaara}">
                 <td>
                     <a th:text="${maara}"></a>
                 </td>
             </tr>
-        </table>       
+        </table>
         <br></br>
         <br></br>
         <br></br>
@@ -44,4 +46,4 @@
             <input type="submit" value="Lisää"/>
         </form>
     </body>
-</html> 
+</html>
