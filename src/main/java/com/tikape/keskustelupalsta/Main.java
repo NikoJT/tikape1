@@ -21,7 +21,13 @@ import static spark.Spark.post;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        Database database = new Database("jdbc:h2:./database");
+        //Database database = new Database("jdbc:h2:./database");
+        String jdbcOsoite = "jdbc:sqlite:todo.db";
+        // jos heroku antaa käyttöömme tietokantaosoitteen, otetaan se käyttöön
+        if (System.getenv("DATABASE_URL") != null) {
+            jdbcOsoite = System.getenv("DATABASE_URL");
+        } 
+        Database database = new Database(jdbcOsoite);
         Spark.staticFileLocation("public");
         AlueDao alueDao = new AlueDao(database); 
         KetjuDao ketjuDao = new KetjuDao(database);
