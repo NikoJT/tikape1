@@ -15,6 +15,7 @@ import com.tikape.keskustelupalsta.domain.Viesti;
 import java.util.Objects;
 import spark.Spark;
 import static spark.Spark.get;
+import static spark.Spark.port;
 import static spark.Spark.post;
 
 public class Main {
@@ -25,6 +26,10 @@ public class Main {
         AlueDao alueDao = new AlueDao(database); 
         KetjuDao ketjuDao = new KetjuDao(database);
         ViestiDao viestiDao = new ViestiDao(database);
+        
+        if (System.getenv("PORT") != null) {
+            port(Integer.valueOf(System.getenv("PORT")));
+        }
         
         get("/die", (req, res) -> {
         System.exit(0);
