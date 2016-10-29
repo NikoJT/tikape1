@@ -48,7 +48,7 @@ public class ViestiDao implements Dao<Viesti, String> {
         return kaikkiViestit;
     }
     
-    public List<Integer> findAllViestit() throws SQLException {
+    public List<Integer> findAllViestitAlueella() throws SQLException {
         List<Integer> alueenViestit = new ArrayList();
         AlueDao aluedao = new AlueDao(database);
         for (Alue alue : aluedao.findAll()) {
@@ -79,16 +79,35 @@ public class ViestiDao implements Dao<Viesti, String> {
         }
         return ketjunViestit;
     }
+       
     
-    @Override
-    public void update(String key, Viesti t) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public HashMap<Integer,String> findAikaAlueittain() throws SQLException {               
+        HashMap<Integer,String> viestienAjat = new HashMap();
+        AlueDao aluedao = new AlueDao(database);
+        for (Alue alue : aluedao.findAll()) {                      
+            for (Viesti viesti : this.findAll()) {
+                if (alue.getId().equals(viesti.getAlue().getId())) {
+                    if (viestienAjat.size() < aluedao.findAll().size()) {
+                        viestienAjat.put(alue.getId(), viesti.getAika());
+                    }
+                }                
+            }
+        }       
+        return viestienAjat;
     }
-
-    @Override
-    public void delete(String key) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    
+    public HashMap<Integer,String> findAikaKetjuittain(String alue) throws SQLException {               
+        HashMap<Integer,String> viestienAjat = new HashMap();
+        KetjuDao ketjudao = new KetjuDao(database);
+        for (Ketju ketju : ketjudao.findAll()) {                      
+            for (Viesti viesti : this.findAll()) {
+                if (ketju.getId().equals(viesti.getKetju().getId()) && viesti.getAlue().getId().toString().equals(alue)) {
+                    if (viestienAjat.size() <= ketjudao.findAllKetjutAlueelta(alue).size()) {
+                        viestienAjat.put(ketju.getId(), viesti.getAika());
+                    }
+                }                
+            }
+        }       
+        return viestienAjat;
     }
-    
-    
 }

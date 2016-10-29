@@ -17,6 +17,7 @@ public class AlueDao implements Dao<Alue, String> {
     @Override
     public Alue create(Alue t) throws SQLException {
         this.database.getConnection().createStatement().execute("INSERT INTO Alue (name) VALUES('" + t.getName() + "')");
+        ViestiDao viestidao = new ViestiDao(database);
         return new Alue(t.getId(),t.getName());
         
     }
@@ -41,14 +42,4 @@ public class AlueDao implements Dao<Alue, String> {
         }
         return kaikkiLista;       
     }
-        
-    @Override
-    public void update(String key, Alue t) throws SQLException {
-        this.database.getConnection().createStatement().execute("UPDATE Alue SET Alue.name='" + t.getName() + "' WHERE Alue.id='" + Integer.parseInt(key) + "'");    
-    }
-
-    @Override
-    public void delete(String key) throws SQLException {
-        this.database.getConnection().createStatement().execute("DELETE FROM Alue WHERE Alue.id='"+Integer.parseInt(key)+"'");    
-    }   
 }

@@ -21,24 +21,26 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Database database = new Database("jdbc:h2:./database");
+        Spark.staticFileLocation("public");
         AlueDao alueDao = new AlueDao(database); 
         KetjuDao ketjuDao = new KetjuDao(database);
         ViestiDao viestiDao = new ViestiDao(database);
-        Spark.staticFileLocation("/public");
-        get("/", (req, res) -> {
-            res.redirect("/alue");
-            return "";
-        });
         
         get("/die", (req, res) -> {
         System.exit(0);
         return "";
         });
         
+        get("/", (req, res) -> {
+            res.redirect("/alue");
+            return "";
+        });
+        
         get("/alue", (req, res) -> {
             HashMap<String, Object> data = new HashMap<>();
             data.put("alueet", alueDao.findAll());
-            data.put("viestimaara", viestiDao.findAllViestit());
+            data.put("viestimaara", viestiDao.findAllViestitAlueella());
+            data.put("aika", viestiDao.findAikaAlueittain());
             return new ModelAndView(data, "alueet");
         }, new ThymeleafTemplateEngine());
         
@@ -49,12 +51,6 @@ public class Main {
                 alueDao.create(uusi);
             }          
             res.redirect("/alue");          
-            return "";
-        });
-        
-        post("/alue/:id/delete", (req, res) -> {
-            alueDao.delete(req.params(":id"));
-            res.redirect("/alue");
             return "";
         });
         
@@ -69,6 +65,7 @@ public class Main {
             }
             data.put("ketjut", alueenKetjut);
             data.put("viestimaara", viestiDao.findAllKetjunViestit(req.params(":id")));
+            data.put("aika", viestiDao.findAikaKetjuittain(req.params(":id")));
             return new ModelAndView(data, "ketjut");
         },new ThymeleafTemplateEngine());
         
