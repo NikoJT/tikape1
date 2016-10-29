@@ -5,11 +5,11 @@
         <title>Ketju</title>
         <meta charset="utf-8" />
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="css/custom.css" rel="stylesheet"/>
+        <link href="../../css/custom.css" rel="stylesheet"/>
     </head>
 
     <body>
-
+      <div class="wrapper">
         <h2>Viestit ketjussa <span th:text="${ketju.name}">ketjun nimi</span></h2>
 
         <ul>
@@ -33,5 +33,6 @@
         </form>
 
         <p><a th:href="@{~/alue/{id}(id=${alue.id})}">Takaisin alueelle</a></p>
+      </div>
     </body>
 </html>

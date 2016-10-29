@@ -5,54 +5,48 @@
         <title>Ketjut</title>
         <meta charset="utf-8" />
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-        <link href="css/custom.css" rel="stylesheet"/>
+        <link href="../css/custom.css" rel="stylesheet"/>
     </head>
 
     <body>
-
+      <div class="wrapper">
         <h2>Ketjut alueella <span th:text="${alue.name}">alueen nimi</span></h2>
-
-        <table style="float: left">
-            <tr>
-                <th align="left">Ketjut</th>
-            </tr>
-            <tr th:each="ketju: ${ketjut}">
-                <td>
-                    <a th:href="@{~/alue/{alueId}/{ketjuId}(alueId=${alue.id},ketjuId=${ketju.id})}" th:text="${ketju.name}"></a>
-                </td>
-            </tr>
-        </table>
-        <table style="float: left">
-            <tr>
-                <th align="left">Viestit ketjussa</th>
-            </tr>
-            <tr th:each="maara: ${viestimaara}">
-                <td>
-                    <a th:text="${maara}"></a>
-
-                </td>
-            </tr>
-        </table>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <h3>Lisää uusi ketju alueelle <span th:text="${alue.name}">alueen nimi</span></h3>
-        <form method="POST" th:action="@{~/alue/{id}(id=${alue.id})}">
-            <p>Ketjun nimi </p><input type="text" maxlength="30" size="30" name="name"/>
-            <br></br>
-            <p>Viestin sisältö </p><textarea name="sisalto" rows="3" cols="48" maxlength="140"></textarea>
-            <br></br>
-            <p>Nimimerkkisi </p><input type="text" maxlength="20" size="20" name="nimimerkki"/>
-            <br></br>
-            <br></br>
-            <input type="submit" value="Lisää"/>
-        </form>
-
+        <div class="row">
+          <div class="ketjut-container">
+            <table style="">
+                <tr>
+                    <th align="left">Ketjut</th>
+                </tr>
+                <tr th:each="ketju: ${ketjut}">
+                    <td>
+                        <a th:href="@{~/alue/{alueId}/{ketjuId}(alueId=${alue.id},ketjuId=${ketju.id})}" th:text="${ketju.name}"></a>
+                    </td>
+                </tr>
+            </table>
+            <table style="float: left">
+                <tr>
+                    <th align="left">Viestit ketjussa</th>
+                </tr>
+                <tr th:each="maara: ${viestimaara}">
+                    <td>
+                        <a th:text="${maara}"></a>
+                    </td>
+                </tr>
+            </table>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-container">
+            <h3>Lisää uusi ketju alueelle <span th:text="${alue.name}">alueen nimi</span></h3>
+            <form method="POST" th:action="@{~/alue/{id}(id=${alue.id})}">
+                <p>Ketjun nimi </p><input type="text" maxlength="30" size="30" name="name"/>
+                <p>Viestin sisältö </p><textarea name="sisalto" rows="3" cols="48" maxlength="140"></textarea>
+                <p>Nimimerkkisi </p><input type="text" maxlength="20" size="20" name="nimimerkki"/>
+                <input type="submit" value="Lisää"/>
+            </form>
+          </div>
+        </div>
         <p><a href="/alue">Takaisin alueille</a></p>
+      </div>
     </body>
 </html>

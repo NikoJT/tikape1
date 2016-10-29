@@ -1,0 +1,29 @@
+.wrapper  {
+  text-align: center;
+}
+
+.alue-container {
+  text-align: center;
+  margin: 100px auto;
+  width: 16%;
+  padding: 10px;
+}
+
+.ketjut-container {
+  text-align: center;
+  margin: auto;
+  width: 16%;
+  padding: 10px;
+}
+
+.form-container {
+  padding: 5px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+tbody {
+  text-align: center;
+}

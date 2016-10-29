@@ -42,6 +42,16 @@ public class KetjuDao implements Dao<Ketju, String> {
         }
         return null;
     }
+    
+    public List<Ketju> findAllKetjutAlueelta(String key) throws SQLException {
+        List<Ketju> ketjulista = new ArrayList();
+        for (Ketju ketju : this.findAll()) {
+            if (Objects.equals(ketju.getAlue().getId().toString(), key)) {
+                ketjulista.add(ketju);
+            }
+        }
+        return ketjulista;
+    }
 
     @Override
     public List<Ketju> findAll() throws SQLException {
@@ -53,18 +63,5 @@ public class KetjuDao implements Dao<Ketju, String> {
             kaikkiLista.add(a);
         }
         return kaikkiLista;
-    }
-
-    @Override
-    public void update(String key, Ketju t) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void delete(String key) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-    
+    }   
 }
